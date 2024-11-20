@@ -12,8 +12,6 @@ import pdftest as pdf
 st.title('Análisis de Cosecha')
 
 def clean(df, start_date=None, end_date=None, pais=None):
-    if pais!=None:
-        df = df[df['pais'].isin(pais)]
     
     df['fecha_cuota'] = pd.to_datetime(df['fecha_cuota'])
     df['fecha_venta'] = pd.to_datetime(df['fecha_venta'])
