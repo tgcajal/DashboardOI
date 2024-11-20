@@ -1,42 +1,31 @@
 """Login and security utils"""
 
 import streamlit as st
-import hmac
+# Load secrets
+users = st.secrets["usernames"]
+passwords = st.secrets["passwords"]
 
-def check_password():
-    """Returns `True` if the user had a correct password."""
+# Simple authentication function
+def authenticate(username, password):
+    if username in users and users[username] == password:
+        return roles[username]
+    return None
 
-    def login_form():
-        """Form with widgets to collect user information"""
-        with st.form("Credenciales"):
-            st.text_input("Username", key="username")
-            st.text_input("Password", type="password", key="password")
-            st.form_submit_button("Log in", on_click=password_entered)
+# Login form
+st.title("Login")
+username = st.text_input("Username")
+password = st.text_input("Password", type="password")
 
-    def password_entered():
-        """Checks whether a password entered by the user is correct."""
-        if st.session_state["username"] in st.secrets[
-            "passwords"
-        ] and hmac.compare_digest(
-            st.session_state["password"],
-            st.secrets.passwords[st.session_state["username"]],
-        ):
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]  # Don't store the username or password.
-            del st.session_state["username"]
-        else:
-            st.session_state["password_correct"] = False
-
-    # Return True if the username + password is validated.
-    if st.session_state.get("password_correct", False):
-        return True
-
-    # Show inputs for username + password.
-    login_form()
-    if "password_correct" in st.session_state:
-        st.error("😕 Usuario desconocido o contraseña incorrecta")
-    return False
-
-
-if not check_password():
-    st.stop()
+if st.button("Login"):
+    role = authenticate(username, password)
+    if role:
+        st.success(f"Welcome, {username}! Your role is: {role}")
+        # Role-based actions
+        if role == "admin":
+            st.write("You have admin access.")
+        elif role == "editor":
+            st.write("You can edit content.")
+        elif role == "viewer":
+            st.write("You have view-only access.")
+    else:
+        st.error("Invalid username or password.")
