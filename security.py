@@ -13,8 +13,8 @@ def authenticate(username, password):
 
 # Login form
 st.title("Login")
-username = st.text_input("Username")
-password = st.text_input("Password", type="password")
+username = st.text_input("Usuario")
+password = st.text_input("Contraseña", type="password")
 
 if st.button("Login"):
     role = authenticate(username, password)
@@ -22,3 +22,4 @@ if st.button("Login"):
         st.success(f"Welcome, {username}! Your role is: {role}")
     else:
         st.error("Invalid username or password.")
+        st.stop()
