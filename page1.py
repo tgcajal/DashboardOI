@@ -77,10 +77,10 @@ tablas = [('Indicadores de Cartera Total (Pendiente)',rf.indicadores_cartera_pen
         ('Mora Contagiada vs Saldo Actual',rf.indicadores_mora_saldo(st.session_state.df, c=True)),
         ('Créditos en Mora vs Créditos Activos',rf.indicadores_mora_creditos(st.session_state.df))]
 
-@st.cache_resource
-def generate_report():
-    file = pdf.create_pdf_report(tablas, "analisis_cartera.pdf")
-    return file
+#@st.cache_resource
+#def generate_report():
+ #   file = pdf.create_pdf_report(tablas, "analisis_cartera.pdf")
+ #   return file
 
 #report = generate_report()
 
