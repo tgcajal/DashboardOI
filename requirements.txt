@@ -1,0 +1,7 @@
+streamlit>=1.39.0
+numpy
+pandas
+matplotlib
+plotly
+geopandas
+folium
