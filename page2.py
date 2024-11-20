@@ -180,7 +180,7 @@ def load_data(path: str):
     return df
 
 @st.cache_data
-def clean_data(df, start_date=False, end_date=False, pais=False):
+def clean_data(df, start_date=False, end_date=False, pais=st.session_state.pais):
     df = clean(df, start_date, end_date, pais)
     return df
 
@@ -188,6 +188,9 @@ original_df = load_data('cashflow.csv')
 
 if "df" not in st.session_state:
     st.session_state.df = clean_data(original_df)
+
+if "pais" not in st.session_state:
+    st.session_state.pais = ['El Salvador','Honduras']
 
 df = st.session_state.df
 
