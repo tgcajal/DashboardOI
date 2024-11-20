@@ -13,6 +13,8 @@ import reportes_funciones as rf
 st.title('Análisis de Cosecha')
 
 def clean(df, start_date=None, end_date=None, pais=None):
+
+    df = df[~df['nombre_empresa'].isin(['(ANTERIOR) INVERSIONES EBEN EZER', 'GALO CELL', 'INVERSIONES EBEN EZER'])]
     
     df['fecha_cuota'] = pd.to_datetime(df['fecha_cuota'])
     df['fecha_venta'] = pd.to_datetime(df['fecha_venta'])
@@ -53,7 +55,7 @@ def analisis_cosecha(df, frecuencia='M'):
     #cosecha['Cartera Total (Capital Pendiente)'] = df[df['estado']=='Fijo'].set_index('fecha_venta').resample('M').agg({'monto_cuota':'sum'})['monto_cuota']
     cosecha['Cartera Total (Capital Pagado)'] = df[df['estado'].isin(['Pagado a Tiempo','Pagado Retraso'])].set_index('fecha_venta').resample(frecuencia).agg({'monto_cuota':'sum'})['monto_cuota']
     cosecha['Cartera Otorgada (Capital Desembolsado)'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'precio_venta':'sum'})['precio_venta']
-    cosecha['Promedio monto de capital'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'valor_financiamiento':'mean'})['valor_financiamiento']
+    cosecha['Promedio monto de capital'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'precio_venta':'mean'})['precio_venta']
     
     cosecha['Cartera Pendiente vs Cartera Otorgada'] = cosecha['Cartera Total (Capital Pendiente)']/cosecha['Cartera Otorgada (Capital Desembolsado)']*100
     cosecha['Cartera Pagada vs Cartera Otorgada'] = cosecha['Cartera Total (Capital Pagado)']/cosecha['Cartera Otorgada (Capital Desembolsado)']*100
