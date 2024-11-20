@@ -195,11 +195,11 @@ if "pais" not in st.session_state:
 df = st.session_state.df
 
 tablas = [
-        ('Análisis de Cosecha',analisis_cosecha(clean(df))),
-        ('Mora - Monto',mora_monto(clean(df))),
-        ('Mora vs Saldo Actual',mora_saldo(clean(df))),
-        ('Mora Contagiada - Monto',mora_monto(clean(df), c=True)),
-        ('Mora Contagiada vs Saldo Actual',mora_saldo(clean(df), c=True))
+        ('Análisis de Cosecha',analisis_cosecha(clean(df, pais=st.session_state.pais))),
+        ('Mora - Monto',mora_monto(clean(df, pais=st.session_state.pais))),
+        ('Mora vs Saldo Actual',mora_saldo(clean(df, pais=st.session_state.pais))),
+        ('Mora Contagiada - Monto',mora_monto(clean(df, pais=st.session_state.pais), c=True)),
+        ('Mora Contagiada vs Saldo Actual',mora_saldo(clean(df, pais=st.session_state.pais), c=True))
          ]
 
 @st.cache_resource
