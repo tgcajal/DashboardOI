@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 import datetime 
 from datetime import date, timedelta 
 import pdftest as pdf
+import reportes_funciones as rf
 
 st.title('Análisis de Cosecha')
 
@@ -45,21 +46,21 @@ def clean(df, start_date=None, end_date=None, pais=None):
 def analisis_cosecha(df, frecuencia='M'):
     cosecha = df.set_index('fecha_venta').resample(frecuencia).agg({'id_credito':'nunique', #creditos otorgados
                                                           'fecha_cuota':'max', # dias fin sin procesar
-                                                          })
+                                                              })
     cosecha.rename(columns={'id_credito':'Créditos otorgados'}, inplace=True)#'fecha_cuota':'Fecha fin'}, inplace=True)
     #cosecha['Días fin de cosecha'] = today - cosecha['Fecha fin']
-    cosecha['Cartera Total (Capital Pendiente)'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'saldo_actual':'sum'})['saldo_actual']
+    cosecha['Cartera Total (Capital Pendiente)'] = df[df['estado'].isin(['Vencido','Exigible','Fijo'])].set_index('fecha_venta').resample(frecuencia).agg({'monto_cuota':'sum'})['monto_cuota']
     #cosecha['Cartera Total (Capital Pendiente)'] = df[df['estado']=='Fijo'].set_index('fecha_venta').resample('M').agg({'monto_cuota':'sum'})['monto_cuota']
     cosecha['Cartera Total (Capital Pagado)'] = df[df['estado'].isin(['Pagado a Tiempo','Pagado Retraso'])].set_index('fecha_venta').resample(frecuencia).agg({'monto_cuota':'sum'})['monto_cuota']
-    cosecha['Cartera Otorgada (Capital Desembolsado)'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'valor_financiamiento':'sum'})['valor_financiamiento']
-    cosecha['Promedio monto de capital'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'precio_venta':'mean'})['precio_venta']
-
+    cosecha['Cartera Otorgada (Capital Desembolsado)'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'precio_venta':'sum'})['precio_venta']
+    cosecha['Promedio monto de capital'] = df.drop_duplicates(subset=['id_credito']).set_index('fecha_venta').resample(frecuencia).agg({'valor_financiamiento':'mean'})['valor_financiamiento']
+    
     cosecha['Cartera Pendiente vs Cartera Otorgada'] = cosecha['Cartera Total (Capital Pendiente)']/cosecha['Cartera Otorgada (Capital Desembolsado)']*100
     cosecha['Cartera Pagada vs Cartera Otorgada'] = cosecha['Cartera Total (Capital Pagado)']/cosecha['Cartera Otorgada (Capital Desembolsado)']*100
-
+    
     cosecha['Créditos activos'] = df[df['estado']=='Fijo'].set_index('fecha_venta').resample(frecuencia).agg({'id_credito':'nunique'})['id_credito']
     cosecha['Créditos otorgados'] = df.set_index('fecha_venta').resample(frecuencia).agg({'id_credito':'nunique'})['id_credito']
-
+    
     cosecha.drop(columns=['fecha_cuota'], inplace=True)
 
     result  = cosecha.T
