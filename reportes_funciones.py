@@ -157,7 +157,7 @@ def indicadores_montos(df):
 # TABLAS MORA Y MORA C VS SALDO ACTUAL
 def indicadores_mora_saldo(df, c=False):
 
-    cartera_pendiente = sum(df[df['estado'].isin(['Vencido','Fijo','Exigible'])]['monto_cuota'])
+    cartera_pendiente = df[df['estado'].isin(['Vencido','Fijo','Exigible'])]['monto_cuota'].sum()
 
     if c==True:
         estados_cuotas = ['Vencido','Fijo','Exigible']
@@ -165,7 +165,7 @@ def indicadores_mora_saldo(df, c=False):
         estados_cuotas = ['Vencido']
 
     # Mora saldo
-    data = df[(df['estado'].isin(estados_cuotas))&(df['estado_mora']!='al dia')]
+    data = df[(df['estado'].isin(estados_cuotas))&(df['estado_mora']!='Al día')]
 
     grouped = data.groupby('estado_mora')['monto_cuota'].sum()
     mora_estado = dict(grouped)
