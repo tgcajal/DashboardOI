@@ -72,7 +72,7 @@ if "pais" not in st.session_state:
 
 tablas = [('Indicadores de Cartera Total (Pendiente)',rf.indicadores_cartera_pendiente(rf.clean(original_df))),
         ('Créditos Otorgados',rf.indicadores_creditos_otorgados(st.session_state.df)),
-        ('Montos',0),
+        ('Montos',pd.DataFrame({'0':0,'1':1}, index=[0]),
         ('Mora vs Saldo Actual',rf.indicadores_mora_saldo(st.session_state.df)),
         ('Mora Contagiada vs Saldo Actual',rf.indicadores_mora_saldo(st.session_state.df, c=True)),
         ('Créditos en Mora vs Créditos Activos',rf.indicadores_mora_creditos(st.session_state.df))]
