@@ -33,7 +33,7 @@ def clean(df, start_date=False, end_date=False, pais=None):
     #df['estado_mora'] = df['estado_mora'].astype(str).replace('None','al dia')
 
     # Agregar grupo pendiente o pagado
-    df['grupo'] = ['Pagado' if value not in ['Fijo','Exigible','Vencido'] else 'Pendiente' for value in df['estado']]
+    #df['grupo'] = ['Pagado' if value not in ['Fijo','Exigible','Vencido'] else 'Pendiente' for value in df['estado']]
 
     # Filtros
     if pais!=None:
