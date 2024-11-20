@@ -51,7 +51,7 @@ def clean(df, start_date=False, end_date=False, pais=None):
     
     clean_df = df[(df['fecha_cuota']>=start_date)&(df['fecha_cuota']<=end_date)]
     
-    if pais!=False:
+    if pais!=None:
         clean_df = df[df['pais'].isin(pais)]
 
 
