@@ -67,7 +67,7 @@ if "df" not in st.session_state:
     st.session_state.df = clean_data(original_df)
 
 
-tablas = [('Indicadores de Cartera Total (Pendiente)',rf.indicadores_cartera_pendiente(clean(original_df))),
+tablas = [('Indicadores de Cartera Total (Pendiente)',rf.indicadores_cartera_pendiente(rf.clean(original_df))),
         ('Créditos Otorgados',rf.indicadores_creditos_otorgados(st.session_state.df)),
         ('Montos',rf.indicadores_montos(st.session_state.df)),
         ('Mora vs Saldo Actual',rf.indicadores_mora_saldo(st.session_state.df)),
