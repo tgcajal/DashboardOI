@@ -20,12 +20,5 @@ if st.button("Login"):
     role = authenticate(username, password)
     if role:
         st.success(f"Welcome, {username}! Your role is: {role}")
-        # Role-based actions
-        if role == "admin":
-            st.write("You have admin access.")
-        elif role == "editor":
-            st.write("You can edit content.")
-        elif role == "viewer":
-            st.write("You have view-only access.")
     else:
         st.error("Invalid username or password.")
