@@ -84,13 +84,13 @@ tablas = [('Indicadores de Cartera Total (Pendiente)',rf.indicadores_cartera_pen
 
 #report = generate_report()
 
-with open("analisis_cartera.pdf", "rb") as file:
-    btn = st.download_button(
-        label="Descargar PDF",
-        data=file,
-        file_name="analisis_cartera.pdf",
-        mime="application/pdf"
-    )
+#with open("analisis_cartera.pdf", "rb") as file:
+#    btn = st.download_button(
+#        label="Descargar PDF",
+#        data=file,
+#        file_name="analisis_cartera.pdf",
+#        mime="application/pdf"
+#    )
 
 
 # Indicadores
