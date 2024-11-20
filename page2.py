@@ -187,6 +187,8 @@ original_df = load_data('cashflow.csv')
 if "df" not in st.session_state:
     st.session_state.df = clean_data(original_df)
 
+df = st.session_state.df
+
 tablas = [
         ('Análisis de Cosecha',analisis_cosecha(clean(df))),
         ('Mora - Monto',mora_monto(clean(df))),
