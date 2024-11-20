@@ -82,7 +82,7 @@ def generate_report():
     file = pdf.create_pdf_report(tablas, "analisis_cartera.pdf")
     return file
 
-report = generate_report()
+#report = generate_report()
 
 with open("analisis_cartera.pdf", "rb") as file:
     btn = st.download_button(
