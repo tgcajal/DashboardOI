@@ -187,11 +187,13 @@ original_df = load_data('cashflow.csv')
 if "df" not in st.session_state:
     st.session_state.df = clean_data(original_df)
 
-tablas = [('Análisis de Cosecha',analisis_cosecha(clean(df)),
-        ('Mora - Monto',mora_monto(clean(df)),
-        ('Mora vs Saldo Actual',mora_saldo(clean(df)),
+tablas = [
+        ('Análisis de Cosecha',analisis_cosecha(clean(df))),
+        ('Mora - Monto',mora_monto(clean(df))),
+        ('Mora vs Saldo Actual',mora_saldo(clean(df))),
         ('Mora Contagiada - Monto',mora_monto(clean(df), c=True)),
-        ('Mora Contagiada vs Saldo Actual',mora_saldo(clean(df), c=True))]
+        ('Mora Contagiada vs Saldo Actual',mora_saldo(clean(df), c=True))
+         ]
 
 @st.cache_resource
 def generate_report():
