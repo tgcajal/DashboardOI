@@ -12,7 +12,6 @@ import pdftest as pdf
 import security
 
 from processing import prep_pipeline
-import charts as ch
 import reportes_funciones as rf
 
 #######################################
