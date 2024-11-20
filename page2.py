@@ -23,7 +23,7 @@ def clean(df, start_date=None, end_date=None, pais=None):
 
     today = datetime.date.today()
     df['dias_atraso_cuota'] = [today-fecha for fecha in df['cuota_date']]
-    df['dias_atraso_cuota'] = df['dias_atraso_cuota']/ pd.Timedelta(days=1)
+    #df['dias_atraso_cuota'] = df['dias_atraso_cuota']/ pd.Timedelta(days=1)
     df['dias_atraso_cuota'] = df['dias_atraso_cuota'].astype(int)
 
     df['saldo_actual'] = df['saldo_actual'].where(df['pais']=='El Salvador', df['saldo_actual']/25)
