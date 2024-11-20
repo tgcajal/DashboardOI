@@ -102,8 +102,8 @@ st.header(tablas[1][0])
 st.dataframe(tablas[1][1], column_config=column_config_cantidad, hide_index=True)
 
 # Montos
-st.header(tablas[2][0])
-st.dataframe(tablas[2][1], hide_index=True)
+#st.header(tablas[2][0])
+#st.dataframe(tablas[2][1], hide_index=True)
 
 # Mora vs saldo
 st.header(tablas[3][0])
