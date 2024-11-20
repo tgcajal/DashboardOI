@@ -19,8 +19,10 @@ def clean(df, start_date=None, end_date=None, pais=None):
     df['fecha_cuota'] = pd.to_datetime(df['fecha_cuota'])
     df['fecha_venta'] = pd.to_datetime(df['fecha_venta'])
 
+    df['cuota_date'] = df['fecha_cuota'].dt.date
+
     today = datetime.date.today()
-    df['dias_atraso_cuota'] = [today-fecha for fecha in df['fecha_cuota'].dt.date]
+    df['dias_atraso_cuota'] = [today-fecha for fecha in df['cuota_date']]
     df['dias_atraso_cuota'] = df['dias_atraso_cuota'].dt.days
     df['dias_atraso_cuota'] = df['dias_atraso_cuota'].astype(int)
 
