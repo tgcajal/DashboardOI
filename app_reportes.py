@@ -178,9 +178,9 @@ st.sidebar.multiselect("País",['El Salvador','Honduras'], key='pais')
 # st.sidebar.write('Filtrar por período:')
 # st.sidebar.date_input(label='Seleccionar fechas', value=(datetime.date(2024,8,1), today), min_value=datetime.date(2024,8,1), max_value=today, key='date_range')
 
-# def aplicar_callback():
-#     st.session_state.df = clean_data(original_df, start_date=st.session_state.date_range[0], end_date=st.session_state.date_range[1], pais=st.session_state.pais)
-# st.sidebar.button(label='Aplicar', on_click=aplicar_callback, type='primary')
+def aplicar_callback():
+     st.session_state.df = clean_data(original_df, pais=st.session_state.pais)
+st.sidebar.button(label='Aplicar', on_click=aplicar_callback, type='primary')
 
 
 pg = st.navigation([st.Page('page1.py', title='Análisis de Cartera'), st.Page('page2.py', title='Análisis de Cosecha')])
