@@ -16,7 +16,7 @@ import pdftest as pdf
 st.set_page_config(page_title="Reportes", page_icon=":bar_chart:", layout="wide")
 
 
-import security
+#import security
 
 from processing import prep_pipeline
 import reportes_funciones as rf
