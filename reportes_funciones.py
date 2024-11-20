@@ -7,6 +7,8 @@ from datetime import date, timedelta
 
 def clean(df, start_date=False, end_date=False, pais=None):
 
+    df = df[~df['nombre_empresa'].isin(['(ANTERIOR) INVERSIONES EBEN EZER', 'GALO CELL', 'INVERSIONES EBEN EZER'])]
+
     # Limpiar columnas de tiempo
     df['fecha_cuota'] = pd.to_datetime(df['fecha_cuota'])
     df['fecha_venta'] = pd.to_datetime(df['fecha_venta'])
