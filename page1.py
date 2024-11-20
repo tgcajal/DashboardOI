@@ -74,7 +74,7 @@ tablas = [('Indicadores de Cartera Total (Pendiente)',rf.indicadores_cartera_pen
         ('Créditos Otorgados',rf.indicadores_creditos_otorgados(rf.clean(original_df, pais=st.session_state.pais)),
         ('Montos',pd.DataFrame({'test':0,'test1':1,'test2':2}, index=[0])),
         ('Mora vs Saldo Actual',rf.indicadores_mora_saldo(rf.clean(original_df, pais=st.session_state.pais)),
-        ('Mora Contagiada vs Saldo Actual',rf.indicadores_mora_saldo(rf.clean(original_df, pais=st.session_state.pais), c=True),
+        ('Mora Contagiada vs Saldo Actual',rf.indicadores_mora_saldo(rf.clean(original_df, pais=st.session_state.pais)),
         ('Créditos en Mora vs Créditos Activos',rf.indicadores_mora_creditos(st.session_state.df)(rf.clean(original_df, pais=st.session_state.pais))]
 
 #@st.cache_resource
