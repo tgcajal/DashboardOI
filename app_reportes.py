@@ -9,16 +9,17 @@ import datetime
 from datetime import date, timedelta 
 import pdftest as pdf
 
-import security
-
-from processing import prep_pipeline
-import reportes_funciones as rf
-
 #######################################
 # PAGE SETUP
 #######################################
 
 st.set_page_config(page_title="Reportes", page_icon=":bar_chart:", layout="wide")
+
+
+import security
+
+from processing import prep_pipeline
+import reportes_funciones as rf
 
 #######################################
 # DATA LOADING
