@@ -36,7 +36,7 @@ def clean(df, start_date=False, end_date=False, pais=None):
     df['grupo'] = ['Pagado' if value not in ['Fijo','Exigible','Vencido'] else 'Pendiente' for value in df['estado']]
 
     # Filtros
-    if pais!=False:
+    if pais!=None:
         clean_df = df[df['pais'].isin(pais)]
     
     if start_date==False:
