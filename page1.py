@@ -11,7 +11,6 @@ from datetime import date, timedelta
 import pdftest as pdf
 
 from processing import prep_pipeline
-import charts as ch
 import reportes_funciones as rf
 
 st.title('Análisis de Cartera')
