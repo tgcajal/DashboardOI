@@ -15,7 +15,7 @@ def clean(df, start_date=False, end_date=False, pais=None):
 
     # Agregar estado de mora
     
-    estado_mora = {'Al día':[None, 0, np.nan],
+    estado_mora = {'Al día':[0, np.nan],
                    'Mora 15':range(1,30),
                 'Mora 30':range(30,45),
                 'Mora 45':range(45,60),
@@ -30,7 +30,7 @@ def clean(df, start_date=False, end_date=False, pais=None):
             if value in estado_mora[key]:
                 df.at[index,'estado_mora'] = key
 
-    #df['estado_mora'] = df['estado_mora'].astype(str).replace('None','al dia')
+    df['estado_mora'] = df['estado_mora'].astype(str).replace('None','Al día')
 
     # Agregar grupo pendiente o pagado
     #df['grupo'] = ['Pagado' if value not in ['Fijo','Exigible','Vencido'] else 'Pendiente' for value in df['estado']]
