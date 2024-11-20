@@ -36,8 +36,9 @@ def clean(df, start_date=False, end_date=False, pais=None):
     #df['grupo'] = ['Pagado' if value not in ['Fijo','Exigible','Vencido'] else 'Pendiente' for value in df['estado']]
 
     # Filtros
-    if pais!=None & pais!=False:
-        clean_df = df[df['pais'].isin(pais)]
+    if pais!=None:
+        if pais!=False:
+            clean_df = df[df['pais'].isin(pais)]
     
     if start_date==False:
         start_date = min(df['fecha_cuota'])
@@ -52,7 +53,8 @@ def clean(df, start_date=False, end_date=False, pais=None):
     clean_df = df[(df['fecha_cuota']>=start_date)&(df['fecha_cuota']<=end_date)]
     
     if pais!=None:
-        clean_df = df[df['pais'].isin(pais)]
+        if pais!=False:
+            clean_df = df[df['pais'].isin(pais)]
 
 
     return clean_df
