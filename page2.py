@@ -129,7 +129,8 @@ def mora_saldo(df, c=False):
     result = pd.DataFrame([mora_saldo_estado(df,'Mora 15',c),
                     mora_saldo_estado(df,'Mora 30',c),
                     mora_saldo_estado(df,'Mora 45',c),
-                    mora_saldo_estado(df,'Mora 60',c)],)
+                    mora_saldo_estado(df,'Mora 60',c)
+                          ])
     
     result = result.T
 
