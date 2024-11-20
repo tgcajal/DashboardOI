@@ -147,7 +147,7 @@ def indicadores_creditos_otorgados(df, formato=False):
 def indicadores_montos(df):
     # No hay que reset index
     montos = pd.DataFrame({'Monto':['Capital promedio otorgado', 'Plazo promedio en cuotas'],
-                       'Valores':['$'+str(round(df.drop_duplicates(subset=['id_credito'])['precio_venta'].mean(),2)), round(df.drop_duplicates(subset=['id_credito'])['numero_periodos'].mean())]})
+                       'Valores':['$'+str(round(df.drop_duplicates(subset=['id_credito'])['precio_venta'].mean(),2)), round(df.drop_duplicates(subset=['id_credito'])['numero_periodos'].mean()/2)]})
     #montos.iloc[0] = f'$ {round(montos.iloc[0],2)}'
     #montos.iloc[1] = round(montos.iloc[1])
 
